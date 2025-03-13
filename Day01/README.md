@@ -89,5 +89,8 @@ Port forwarding: docker run --rm -d --name app1 -p 8000:80 nginx:latest
 
 View logs: docker logs app1 -f
 
+cd /var/lib/docker/containers/a18f787e6568a4b5e981639ad0a9961e71d7a20401e57b4f27a2b5f6cb9bdf63
+cat a18f787e6568a4b5e981639ad0a9961e71d7a20401e57b4f27a2b5f6cb9bdf63-json.log |  jq
+
 
    
