@@ -38,11 +38,27 @@ Docker network inspect myapp
 
 Now run containers with including the custom network
 
-docker run –rm -d –name app3 -p 8001 –network myapp  kiran2361993:troubleshootingtools:v1
+docker run --rm -d --name app3 -p 8001:80 --network myapp kiran2361993/troubleshootingtools:v1
 
-docker run –rm -d –name app4 -p 8002 –network myapp  kiran2361993:troubleshootingtools:v1
+docker run --rm -d --name app4 -p 8002:80 --network myapp kiran2361993/troubleshootingtools:v1
 
+# docker inspect app3 | grep -i ipaddress
+# docker inspect app4 | grep -i ipaddress
+# docker exec -it containername bash
 If you login to the container with docker exec -it containername bash and you can ping with the container name instead of IP, It should work. 
+
+now to connect custome network to app1 container which is in bridge network.
+
+# docker network create custome
+# docker network connect custome app3
+# docker network inspect custome
+# docker run --rm -d --name app1 -p 8005:80 --network custome kiran2361993/troubleshootingtools:v1
+# docker exec -it app3 bash
+
+now ping to app1 container it will be pingable.
+ping app1
+
+# docker stop $(docker ps -aq)   (to stop all the containers at once)
 
 # Using the HOST Network Mode
 
