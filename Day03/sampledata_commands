@@ -300,6 +300,10 @@ db.bios.insertMany([
 
 docker run --rm -d --name app1 -v /var/run/docker.sock:/var/run/docker.sock --network  none kiran2361993/troubleshootingtools:v1
 
+
+######################################################################
+
+To monitore the resources of docker, we can use portainer
 docker create volume create portainerdata
 
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
@@ -307,3 +311,5 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -v portainer_data:/data \
         portainer/portainer-ce:2.11.1
+
+http://publicip:9443
