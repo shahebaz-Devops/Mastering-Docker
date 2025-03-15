@@ -37,6 +37,15 @@ Containers are stateless by nature, meaning if a container is deleted, all data 
 
 ## Practical Examples
 
+# docker run --rm -d --name mongodb -p 27017:27017 mongo:latest
+# docker ps
+# docker exec -it mongodb mongosh
+test> show dbs;
+add some data into it
+test> db.helo.find()
+
+now come outoff the container and stop the container and re create it, after recreate it you will no see the data as its persisten.
+
 ### Using Volumes
 
 1. **List existing volumes**:
@@ -65,7 +74,7 @@ Containers are stateless by nature, meaning if a container is deleted, all data 
    > show dbs;
    > Insert some data
    > show dbs;
-   > db.hello.find();
+   > db.helo.find();
 
 
 6. **Stop and start the container**:
@@ -74,6 +83,8 @@ Containers are stateless by nature, meaning if a container is deleted, all data 
    docker ps -a
    docker start mongodb
  exec -it mongodb mongosh
+
+now data will be persist.
 
 
 ### Using Bind Mounts
