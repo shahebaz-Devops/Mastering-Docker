@@ -92,16 +92,23 @@ now data will be persist.
 1. **Run a container without network access**:
 
    docker run --rm -d --name troubleshootingtools --network none troubleshootingtools:v10
+   docker exec -it troubleshootingtools bash
+   try to run docker commands like docker ps or docker images , it will give the error as whenever we run the docker command so it will
+   go to docker daemon through docker socket.
+   
+so now will mount the docker socket with container to check how bind mounts work
+
+3. **Run a container with Docker socket mounted**:
+
+   # docker run --rm -d --name app1 -v /var/run/docker.sock:/var/run/docker.sock --network none kiran2361993/troubleshootingtools:v1
+   # docker exec -it app1 bash
+   
+   now run command docker ps command it will work.
 
 
-2. **Run a container with Docker socket mounted**:
+5. **Inspect the container**:
 
-   docker run --rm -d --name troubleshootingtools -v /var/run/docker.sock:/var/run/docker.sock --network none troubleshootingtools:v10
-
-
-3. **Inspect the container**:
-
-   docker inspect troubleshootingtools
+   docker inspect app1
 
 
 ## Docker Client and Daemon
